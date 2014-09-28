@@ -1,0 +1,54 @@
+# Yaml file describing locations in our game world
+# Slavisa Djukic <Slavisa.Djukic15@myhunter.cuny.edu>
+# Sep. 28, 2014.
+---
+? "Locations list"
+:
+  - 
+    "position": "(1, 1)"
+    "description": "You are in the hills on the south west edge of the city."
+    "connections": "('n', 'e')"
+  - 
+    "position": "(1, 2)"
+    "description": "Little valley between hills there is a road leading to the main city gate"
+    "connections": "('w', 'n', 'e')"
+  -
+    "position": "(1, 3)"
+    "description": "You are on the south city limits. Few houses are spread between the walls and hills. Hills gently turning into the desert."
+    "connections": "('w', 'e')"
+  -
+    "position": "(1, 4)"
+    "description": "You are on the south city limits. Not a soul around. This area is as arid as any desert"
+    "connections": "('w', 'e')"
+  -
+    "position": "(1, 5)"
+    "description": "This is south eastern edge of the city. Only fugitives and crazy people would wander here."
+    "connections": "('w', 'e')"  
+  -
+    "position": "(1, 6)"
+    "description": "You can see only a few bleached skeletons around you."
+    "connections": "('w', 'n')"
+  -
+    "position": "(2, 1)"
+    "description": "City walls are to the east. It is a magnificent and rich city, maybe you should get inside."
+    "connections": "('n', 's')"
+  -
+    "position": "(2, 2)"
+    "description": "You stand in front of the eastern wall of the city. From here it looks impenetrable, maybe you should look for gate."
+    "connections": "('w', 'n', 's')"  
+  -
+    "position": "(2, 3)"
+    "description": "This looks like main city gate. It is well protected with several guards on each side."
+    "connections": "('w', 'e', 'n')"
+  -
+    "position": "(2, 4)"
+    "description": "You are on the south city limits. Few houses are spread between the walls and hills. Wall looks imposing, you don't see a way to scale it ."
+    "connections": "('w', 'e')"  
+  -
+    "position": "(2, 5)"
+    "description": "You are on the south city limits. Houses are getting sparser. This direction does not look promising."
+    "connections": "('w', 'e')" 
+  -
+    "position": "(2, 6)"
+    "description": "This is where city continues north. The river lays that way."
+    "connections": "('w', 'n')"  
