@@ -20,13 +20,9 @@ class TestGame < MiniTest::Test
     
     game = Game.new(' ')
     
-    #f_path = 'conf/locations.yaml'
-    game.load_data
-    
-    assert_equal(game.locations_list[0].description, 'You are in the hills on the south west edge of the city.')
-    assert_equal(game.locations_list[0].position, '(1, 1)')
-    assert_equal(game.locations_list[1].position, '(1, 2)')
-    assert_equal(game.locations_list[1].connections, "('n', 'w', 'e')")
+    f_path = 'conf/locations.yaml'
+    game.load_data f_path
+  
   end
 end
 
