@@ -14,9 +14,12 @@ class Game
   attr_reader :name, :locations_list
   
   @@locations_list = []  
-
-  def initialize name
+  
+  def initialize(name, conf_file_path)
     @name = name
+    @@current_location = 0
+    load_data conf_file_path
+    @map_size = @@locations_list.size
   end 
     
     
@@ -27,11 +30,44 @@ class Game
   end
   
   
-  def something
-    puts @@locations_list[0].description
+  def describe_location 
+    puts @@locations_list[@@current_location].description
   end
+  
+  
+  def get_new_direction
+    puts "You can go in these directions #{@@locations_list[@@current_location].connections}."
+    puts "Where do you want to go: "
+    gets.chomp
+  end
+
+
+  def change_location
+    direction = get_new_direction
+    case direction
+    when 'w'
+      change = -1
+    when 'e'
+      change = 1
+    when 'n'
+      change = 6
+    when 's'
+      change = -6
+    end
+    
+    if 0 < @@current_location + change || @@current_location + change < @map_size
+      @@current_location += change 
+    else
+      @@current_location
+    end
+    
+  end
+  
 end
 
-game = Game.new(" ")
-game.load_data "conf/locations.yaml"
-game.something
+game = Game.new("Nada 3", "conf/locations.yaml")
+
+(10).times do |l|
+  game.describe_location
+  game.change_location
+end

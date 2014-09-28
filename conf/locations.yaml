@@ -5,50 +5,147 @@
 ? "Locations list"
 :
   - 
-    "position": "(1, 1)"
-    "description": "You are in the hills on the south west edge of the city."
-    "connections": "('n', 'e')"
+    "position": "1, 1"
+    "description": "You are in the location (1, 1)"
+    "connections": "n e"
   - 
-    "position": "(1, 2)"
-    "description": "Little valley between hills there is a road leading to the main city gate"
-    "connections": "('w', 'n', 'e')"
+    "position": "1, 2"
+    "description": "You are in the location (1, 2)"
+    "connections": "w e"
   -
-    "position": "(1, 3)"
-    "description": "You are on the south city limits. Few houses are spread between the walls and hills. Hills gently turning into the desert."
-    "connections": "('w', 'e')"
+    "position": "1, 3"
+    "description": "You are in the location (1, 3)."
+    "connections": "w e n"
   -
-    "position": "(1, 4)"
-    "description": "You are on the south city limits. Not a soul around. This area is as arid as any desert"
-    "connections": "('w', 'e')"
+    "position": "1, 4"
+    "description": "You are in the location (1, 4)"
+    "connections": "w e"
   -
-    "position": "(1, 5)"
-    "description": "This is south eastern edge of the city. Only fugitives and crazy people would wander here."
-    "connections": "('w', 'e')"  
+    "position": "1, 5"
+    "description": "You are in the location (1, 5)."
+    "connections": "w e"  
   -
-    "position": "(1, 6)"
-    "description": "You can see only a few bleached skeletons around you."
-    "connections": "('w', 'n')"
+    "position": "1, 6"
+    "description": "You are in the location (1, 6)."
+    "connections": "w n"
   -
-    "position": "(2, 1)"
-    "description": "City walls are to the east. It is a magnificent and rich city, maybe you should get inside."
-    "connections": "('n', 's')"
+    "position": "2, 1"
+    "description": "You are in the location (2, 1)."
+    "connections": "n s"
   -
-    "position": "(2, 2)"
-    "description": "You stand in front of the eastern wall of the city. From here it looks impenetrable, maybe you should look for gate."
-    "connections": "('w', 'n', 's')"  
+    "position": "2, 2"
+    "description": "You are in the location (2, 2)."
+    "connections": "w n"  
   -
-    "position": "(2, 3)"
-    "description": "This looks like main city gate. It is well protected with several guards on each side."
-    "connections": "('w', 'e', 'n')"
+    "position": "2, 3"
+    "description": "You are in the location (2, 3)."
+    "connections": "w e n s"
   -
-    "position": "(2, 4)"
-    "description": "You are on the south city limits. Few houses are spread between the walls and hills. Wall looks imposing, you don't see a way to scale it ."
-    "connections": "('w', 'e')"  
+    "position": "2, 4"
+    "description": "You are in the location (2, 4)."
+    "connections": "w e"  
   -
-    "position": "(2, 5)"
-    "description": "You are on the south city limits. Houses are getting sparser. This direction does not look promising."
-    "connections": "('w', 'e')" 
+    "position": "2, 5"
+    "description": "You are in the location (2, 5)."
+    "connections": "w n" 
   -
-    "position": "(2, 6)"
-    "description": "This is where city continues north. The river lays that way."
-    "connections": "('w', 'n')"  
+    "position": "2, 6"
+    "description": "You are in the location(2, 6)."
+    "connections": "s n"  
+  - 
+    "position": "3, 1"
+    "description": "You are in the location (3, 1)."
+    "connections": "n s w"
+  - 
+    "position": "3, 2"
+    "description": "You are in the location (3, 2)"
+    "connections": "w n e s"
+  -
+    "position": "3, 3"
+    "description": "You are in the location (3, 3)."
+    "connections": "w s e n"
+  -
+    "position": "3, 4"
+    "description": "You are in the location (3, 4)"
+    "connections": "w n"
+  -
+    "position": "3, 5"
+    "description": "You are in the location (3, 5)."
+    "connections": "n s"  
+  -
+    "position": "3, 6"
+    "description": "You are in the location (3, 6)."
+    "connections": "n s"
+  - 
+    "position": "4, 1"
+    "description": "You are the location (4, 1)"
+    "connections": "n s"
+  - 
+    "position": "4, 2"
+    "description": "You are in the location (4, 2)"
+    "connections": "n s"
+  -
+    "position": "4, 3"
+    "description": "You are in the location (4, 3)."
+    "connections": "s e"
+  -
+    "position": "4, 4"
+    "description": "You are in the location (4, 4)"
+    "connections": "w s"
+  -
+    "position": "4, 5"
+    "description": "You are in the location (4, 5)."
+    "connections": "n s"  
+  -
+    "position": "4, 6"
+    "description": "You are in the location (4, 6)."
+    "connections": "n s"
+  -
+    "position": "5, 1"
+    "description": "You are in the location (5, 1)."
+    "connections": "n s"
+  -
+    "position": "5, 2"
+    "description": "You are in the location (5, 2)."
+    "connections": "w s"  
+  -
+    "position": "5, 3"
+    "description": "You are in the location (5, 3)."
+    "connections": "w e"
+  -
+    "position": "5, 4"
+    "description": "You are in the location (5, 4)."
+    "connections": "w e"  
+  -
+    "position": "5, 5"
+    "description": "You are in the location (5, 5)."
+    "connections": "w s" 
+  -
+    "position": "5, 6"
+    "description": "You are in the location(5, 6)."
+    "connections": "s n"  
+  - 
+    "position": "6, 1"
+    "description": "You are in the location (6, 1)."
+    "connections": "s e"
+  - 
+    "position": "6, 2"
+    "description": "You are in the location (6, 2)"
+    "connections": "w e"
+  -
+    "position": "6, 3"
+    "description": "You are in the location (6, 3)."
+    "connections": "w e"
+  -
+    "position": "6, 4"
+    "description": "You are in the location (6, 4)"
+    "connections": "w e"
+  -
+    "position": "6, 5"
+    "description": "You are in the location (6, 5)."
+    "connections": "w e"  
+  -
+    "position": "6, 6"
+    "description": "You are in the location (6, 6)."
+    "connections": "w s"
+  
