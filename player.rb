@@ -5,16 +5,17 @@
 
 class Player
  
-  attr_reader :location, :strength, :weapon_skill, :endurance, :agility, :health, :storage
+  attr_reader :location, :strength, :weapon_skill, :endurance, :agility, :health, :storage, :carrying
 
-  def initialize(location, stat)
-    @location = location
+  def initialize(stat)
+    @location = stat[:location]
     @strength = stat["strength"]
     @weapon_skill = stat["weapon_skill"]
     @endurance = stat["endurance"]
     @agility = stat["agility"]
     @health = stat["health"]
     @storage = []
+    @carrying = []
   end
 
   def add_item item
@@ -40,8 +41,8 @@ class HumanPlayer < Player
 
   attr_reader :name
 
-  def initialize(location, stat, name)
-    super(location, stat)
+  def initialize(stat, name)
+    super(stat)
     @name = name
   end
 

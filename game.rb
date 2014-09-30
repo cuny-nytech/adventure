@@ -9,34 +9,38 @@ $:.unshift File.dirname(__FILE__)
 require 'yaml'
 require 'location'
 require 'curses'
+require 'player'
+
 include Curses
 
 class Game
   
-  attr_reader :name, :locations_list
+  attr_reader :name, :locations_list, :players_list, :no_players, :map_size
   
-  @@locations_list = []  
   
   def initialize(name, conf_file_path)
     @name = name
-    @@current_location = 0
-    load_data conf_file_path
-    @map_size = @@locations_list.size
+    @locations_list = []
+    @players_list = []
+    load_data conf_file_path + "/locations.yaml"
+    load_player conf_file_path + "/players.yaml"
+    @map_size = @locations_list.size
+    @no_players = @players_list.size
   end 
     
     
   def load_data file_path
     data = YAML.load_file file_path
     locations = data["Locations list"]
-    locations.each {|l| @@locations_list << Location.new(l) }
+    locations.each {|l| @locations_list << Location.new(l) }
   end
   
-  
-  def describe_location 
-    puts @@locations_list[@@current_location].description
+  def load_player file_path
+    data = YAML.load_file file_path
+    players = data["Players list"]
+    players.each {|p| @players_list << Player.new(p) }
   end
-  
-  
+
   def get_new_direction
     puts "You can go in these directions #{@@locations_list[@@current_location].connections}."
     puts "Where do you want to go: "
@@ -97,5 +101,8 @@ class Game
   
 end
 
-#game = Game.new("Nada 3", "conf/locations.yaml")
+game = Game.new("Nada 3", "conf")
+game.players_list.each { |pl| puts pl }
+puts game.no_players
+
 #game.curses_screen
