@@ -97,5 +97,5 @@ class Game
   
 end
 
-game = Game.new("Nada 3", "conf/locations.yaml")
-game.curses_screen
+#game = Game.new("Nada 3", "conf/locations.yaml")
+#game.curses_screen
