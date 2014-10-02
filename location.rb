@@ -8,11 +8,14 @@
 class Location
   
   attr_reader :position, :description, :connections
+  attr_accessor :items
 
   def initialize params
     @position = params["position"]
     @description = params["description"]
     @connections = params["connections"]
+    @items = []
+    @items.concat params["items"] if params["items"]
   end
 
 end

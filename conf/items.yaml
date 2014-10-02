@@ -1,0 +1,29 @@
+# Configuration file for players in our game
+# 
+# Slavisa Djukic <Slavisa.Djukic15@myhunter.cuny.edu>
+# Sep. 30, 2014.
+
+---
+? "Items list"
+:
+  -
+    "Type": "dagger"
+    "Attack": 7
+    "Defense": 3
+    "Weight": 2
+  -
+    "Type": "shield"
+    "Attack": 2
+    "Defense": 15
+    "Weight": 12
+  -
+    "Type": "golden key"
+    "Attack": 1
+    "Defense": 1
+    "Weight": 1
+  -
+    "Type": "Dragon Sword"
+    "Attack": 21
+    "Defense": 9
+    "Weight": 14
+

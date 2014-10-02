@@ -7,37 +7,50 @@
 ? "Players list"
 :
   -
-    "Type": "NPC"
-    "Location": 0
-    "Strength": 25
-    "Endurance": 22
-    "Agility": 12
-    "Health": 50
+    "Type": "Human"
+    "Location": "0"
+    "Strength": "25"
+    "Endurance": "22"
+    "Agility": "12"
+    "Health": "50"
     "Storage": null
-    "Carrying": null
-    ? "Weapon skill"
-    : 12
+    ? "In Hand"
+    : null
+    ? "Weapon Skill"
+    : "10"
+  -  
+    "Type": "NPC"
+    "Location": "7"
+    "Strength": "25"
+    "Endurance": "22"
+    "Agility": "12"
+    "Health": "50"
+    "Storage": null
+    ? "In Hand"
+    : null
+    ? "Weapon Skill"
+    : "12"
   -
     "Type": "NPC"
-    "Location": 10
-    "Strength": 25
-    "Endurance": 22
-    "Agility": 12
-    "Health": 50
+    "Location": "10"
+    "Strength": "25"
+    "Endurance": "22"
+    "Agility": "12"
+    "Health": "50"
     "Storage": null
-    "Carrying": "dagger"
-    ? "Weapon skill"
-    : 12
+    ? "In Hand"
+    : "dagger"
+    ? "Weapon Skill"
+    : "12"
   -
-    "Type": "HumanPlayer"
-    "Location": 13
-    "Strength": 25
-    "Endurance": 22
-    "Agility": 12
-    "Health": 50
+    "Type": "NPC"
+    "Location": "13"
+    "Strength": "25"
+    "Endurance": "22"
+    "Agility": "12"
+    "Health": "50"
     "Storage": null
-    "Carrying": "shield"
-    ? "Weapon skill"
-    : 10
-
-    
+    ? "In Hand"
+    : "shield"
+    ? "Weapon Skill"
+    : "10"
