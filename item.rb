@@ -5,16 +5,10 @@
 
 class Item
 
-  attr_accessor :type, :attack, :defense, :weight
+  attr_accessor :type
 
   def initialize args
-    @type = args["Type"]
-    @attack = args["Attack"]
-    @defense = args["Defense"]
-    @weight = args["Weight"]
+    @type = {args["Type"] => {attack: args["Attack"], defense: args["Defense"], weigh: args["Weight"]} }
   end
 
-  def to_s 
-    "Type " + @type + " Attack " + @attack.to_s + " Defense " + @defense.to_s + " Weight " + @weight.to_s
-  end
 end

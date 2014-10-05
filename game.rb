@@ -14,7 +14,7 @@ require 'item'
 
 class Game
   
-  attr_reader :name, :locations_list, :players_list, :no_players, :map_size, :items_list
+  attr_reader :name, :locations_list, :players_list, :no_players, :map_size, :items_list, :actions
   
   
   def initialize(name, conf_file_path)
@@ -27,6 +27,8 @@ class Game
     load_items conf_file_path + "/items.yaml"
     @map_size = @locations_list.size
     @no_players = @players_list.size
+    @actions = []
+    
   end 
     
     
@@ -35,6 +37,7 @@ class Game
     locations = data["Locations list"]
     locations.each {|l| @locations_list << Location.new(l) }
   end
+  
   
   def load_player file_path
     data = YAML.load_file file_path
@@ -51,33 +54,47 @@ class Game
 
   end
 
+  
   def load_items file_path
     data = YAML.load_file file_path
     items = data["Items list"]
     items.each { |i| @items_list << Item.new(i) }
   end
 
-  def get_new_direction
-    puts "You can go in these directions #{@locations_list[@current_location].connections}."
-    puts "Where do you want to go: "
-    gets.chomp
-  end
 
-
-  def describe_location
-    # know that human player is always first entry in players_list
+  def get_actions
+    
     actions = []
     player = @players_list[0]
-    loc = player.location.to_i
-    puts @locations_list[loc].description
-    if @locations_list[loc].items.size != 0
-      puts "You can see #{@locations_list[loc].items} laying around " 
-      actions << "Pick UP" 
+    loc = player.location
+    @locations_list[loc].connections.split(' ').each do |c|
+      actions << {action: c}
     end
-    actions.concat @locations_list[loc].connections.split(' ')
-    actions << "Take Out"  if player.storage.size != 0
-    actions.concat ["Drop", "Put Away"] if player.inHand 
-    actions << "Quit"
+    
+    if @locations_list[loc].items.size != 0
+     
+      temp = {}
+      temp[:items] = []
+      temp[:items].concat @locations_list[loc].items
+      temp[:action] =  "Pick Up"
+      actions << temp
+    end
+    
+    if player.storage.size != 0
+      temp = {}
+      temp[:items] = []
+      temp[:items].concat player.storage
+      temp[:action] = "Take Out"
+      actions << temp
+    end
+    
+    if player.inHand
+      actions << {action: "Drop"}
+      actions << {action: "Put Away"}
+    end
+    
+    actions << {action: "Quit"}
     actions
   end
+  
 end

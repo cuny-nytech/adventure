@@ -1,127 +1,101 @@
 #!/usr/bin/env ruby
 
-# apparently I need this bo be able to load files that are not in the default LOAD_PATH for ruby
+# This is main file that runs the game
+# Slavisa Djukic <Slavisa.Djukic15@myhunter.cuny.edu>
+# Oct. 4, 2014.
+
 $:.unshift File.dirname(__FILE__)
 require 'game'
 require 'curses'
 
 include Curses
 
-def perform_action(player, action)
-  loc = player.location.to_i
-  
-  case action
-  when 'w'
-    change = -1
-  when 'e'
-    change = 1
-  when 'n'
-    change = 6
-  when 's'
-    change = -6
-  when "Pick UP"
-    locations_list[loc].items.each {|i| puts i }
-    puts "Which item do you want to pick up"
-    choice = gets.chomp.to_i
-    player.storage << locations_list[loc].items[choice]
-    locations_list[loc].items.delete(locations_list[loc].items[choice]) 
-  when "Take Out"
-    puts "You have "
-    player.storage.each {|item| puts item }
-    puts "Which one do you want to get out"
-    choice = gets.chomp.to_i
-    player.storage << player.inHand if player.inHand
-    player.inHand = player.storage[choice]
-    player.storage.delete(player.inHand)   
-  when "Drop"
-    locations_list[loc].items << player.inHand
-    player.inHand = nil
-  when "Put Away"
-    player.storage << player.inHand
-    player.inHand = nil
-  end
-  
-  # check that player moved to the allowed location
-  if change
-    if 0 <= loc + change && loc + change < @map_size
-      player.location = loc + change 
-    end
-  end
-end
+CONF_FILE_PATH = "conf"
 
 class Adventure
-
-  def initialize
-    
+  
+  attr_reader :game
+  
+  def initialize 
+    @game = Game.new("Nada", CONF_FILE_PATH)
+    @player = @game.players_list[0]
   end
 
   def curses_screen
     init_screen
-    begin
-      crmode
-      #  show_message("Hit any key")
-      setpos((lines - 5) / 2, (cols - 10) / 2)
-      create_main_window
-      refresh
-      getch
-      show_message("Hello, World!")
-      refresh
-      ensure
-      close_screen
-    end
-  end
-
-  def create_main_window
-    x = 3
-    y = 10
-    setpos(x, y)
-    top_line = '-' * 85 + ' ' * 5 + '-' * 30
-    line = '|' + " " * 83 + '|' + ' ' * 5 + '|' + ' ' * 28 + '|'
-    middle = '-' * 85 + ' ' * 5 + '|' + ' ' * 28 + '|'
-    inner = ' ' * 90 + '|' + ' ' * 28 + '|'
-    addstr(top_line)
+    noecho
+    nonl
+    start_color
+    curs_set(0)
+    init_pair(COLOR_BLUE,COLOR_BLUE,COLOR_BLACK)
+    init_pair(COLOR_GREEN,COLOR_GREEN, COLOR_BLACK)
+    init_pair(COLOR_WHITE, COLOR_WHITE, COLOR_BLACK)
+    init_pair(COLOR_RED, COLOR_RED, COLOR_BLACK)
     
-    26.times do
-      x += 1
-      setpos(x, y)
-      addstr(line)
+    stdscr.keypad(true)
+    crmode
+    while true do
+      clear
+      display_player_status
+      display_location 
+      refresh
+      
+      actions = @game.get_actions
+      action = get_action(actions, :action, 0, 0)
+      a = execute_action(action)
+     
+      break if a
     end
-
-    x += 1
-    setpos(x, y)
-    addstr(middle)
-
-    2.times do
-      addstr(inner)
-    end
-
-    x += 1
-    setpos(x, y)
-    addstr(middle)
-
-    3.times do
-      x += 1
-      setpos(x, y)
-      addstr(line)
-    end
-
-    x += 1
-    setpos(x, y)
-    addstr(top_line)
-
+    ensure
+      close_screen
   end
 
-  def show_message(message)
-    width = message.length + 6
-    win = Window.new(5, width,
-               (lines - 5) / 2, (cols - width) / 2)
-    win.box(?|, ?-)
-    win.setpos(2, 3)
-    win.addstr(message)
-    win.refresh
-    win.getch
-    win.close
+  
+  def display_location 
+    
+    line = @game.locations_list[@player.location].description
+    attron(color_pair(COLOR_GREEN))
+    setpos(10, cols - 75)
+    addstr(line)
+    if @game.locations_list[@player.location].items.size != 0
+      setpos(11, cols - 75)
+      addstr("You can see:")
+      items = ""
+      @game.locations_list[@player.location].items.each {|i| items += i + "  "}
+      setpos(11, cols - 61)
+      attron(color_pair(COLOR_RED))
+      addstr(items)
+    end
   end
+    
+    
+  def display_player_status
+    
+    attron(color_pair(COLOR_BLUE))
+    setpos(3, cols - 20)
+    addstr(@player.name)
+    setpos(4, cols - 20)
+    addstr("Strength: " + @player.strength)
+    setpos(5, cols - 20)
+    addstr("Health: " + @player.health)
+    setpos(6, cols - 20)
+    
+    if @player.inHand
+      addstr("In hand: " + @player.inHand)
+    else
+      addstr("In hand:")
+    end
+    setpos(7, cols - 20)
+    addstr("Backpack: ")
+    item = 0
+    @player.storage.each do |i|
+      setpos(8+item, cols - 15)
+      deleteln
+      addstr(i)
+      item += 1
+    end
+  end
+     
 
   def get_item_char item
     result = ''
@@ -130,28 +104,116 @@ class Adventure
     end
     result
   end
+  
+  def get_action(command, label, highlight, line_offset, action = nil)
+    
+    result = {}
+    start_x = 15
+    start_y = lines - 10 + line_offset
+    setpos(start_y, start_x)
+  
+    while true do
+      item = 0
+      pos_x = start_x
+      if label == :action
+        command.each do |com|
+          if item != highlight
+            attron(color_pair(COLOR_GREEN)) 
+          else
+            attron(color_pair(COLOR_WHITE))
+          end
+      
+          setpos(start_y, pos_x)
+          addstr(com[label])
+          pos_x = pos_x + com[label].size + 3
+          refresh
+          item += 1
+        end
+        
+        if command[highlight][label] == "Pick Up" or command[highlight][label] == "Take Out"
+          sub_act = get_action(command[highlight], :items, 0, 2) 
+          if sub_act
+            result[:item] = sub_act
+            result[:action] = command[highlight][label]
+            return result
+          end
+        end
+        
+      else
+        command[label].each do |com|
+          if item != highlight
+            attron(color_pair(COLOR_GREEN)) 
+          else
+            attron(color_pair(COLOR_WHITE))
+          end
+      
+          setpos(start_y, pos_x)
+          addstr(com)
+          pos_x = pos_x + com.size + 3
+          refresh
+          item += 1
+        end
+      end
+      
+      c = getch
+      case c
+      when KEY_LEFT
+        highlight -= 1
+      when KEY_RIGHT
+        highlight += 1
+      when KEY_DOWN
+        return 
+      when KEY_UP
+        if label == :action
+          return result[:action] = command[highlight]
+        else
+          return command[label][highlight]
+        end
+      end
+      
+      if label == :action
+        highlight %= command.size  if highlight < 0 or highlight == command.size
+      else
+        highlight %= command[label].size  if highlight < 0 or highlight == command[label].size
+      end
+    end
+  end
+  
+  
+  def execute_action(action)
+      
+    if action
+      case action[:action]
+      when "Quit"
+        return "Quit"
+      when "West"
+        @player.location -= 1 
+      when "East"
+        @player.location += 1
+      when "North"
+        @player.location += 6
+      when "South"
+        @player.location -= 6   
+      when "Pick Up" 
+        @player.storage << action[:item] 
+        @game.locations_list[@player.location].items.delete(action[:item])
+      when "Take Out"
+        unless @player.inHand
+          @player.inHand = action[:item]
+          @player.storage.delete(action[:item])
+        end
+      when "Drop"
+        @game.locations_list[@player.location].items << @player.inHand
+        @player.inHand = nil
+      when "Put Away"
+        @player.storage << @player.inHand
+        @player.inHand = nil
+      end
+    end
+    nil
+  end
+  
 end
 
-game = Game.new("Nada 3", "conf")
-
-human = game.players_list[0]
-
-
-#while true
-
-#  action = human.choose_action game.describe_location
-#  if action == 'Quit'
-#    break
-#  end
-#  game.perform_action(human, action)
-#  puts "You have #{human.storage} in backpack" if human.storage.size != 0
-#  puts "You are holding #{human.inHand} in hands." if human.inHand
-#  puts "---------------------------------------------------"
-
-#end
-
-#puts "Good Bye!"
 g = Adventure.new()
-
-
 g.curses_screen

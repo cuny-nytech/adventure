@@ -12,7 +12,7 @@ class Player
 
   def initialize stat
     @type = stat["Type"]
-    @location = stat["Location"]
+    @location = stat["Location"].to_i
     @strength = stat["Strength"]
     @weapon_skill = stat["Weapon Skill"]
     @endurance = stat["Endurance"]
@@ -20,6 +20,7 @@ class Player
     @health = stat["Health"]
     @inHand = stat["In Hand"]
     @storage = []
+    @storage.concat stat["Storage"] if stat["Storage"]
   end
 
   def add_item item

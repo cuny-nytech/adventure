@@ -8,14 +8,16 @@
 :
   -
     "Type": "Human"
-    "Location": "0"
+    "Location": "6"
     "Strength": "25"
     "Endurance": "22"
     "Agility": "12"
     "Health": "50"
-    "Storage": null
+    "Storage": 
+      - "knife"
+      - "key"
     ? "In Hand"
-    : null
+    : "letter"
     ? "Weapon Skill"
     : "10"
   -  
@@ -25,7 +27,7 @@
     "Endurance": "22"
     "Agility": "12"
     "Health": "50"
-    "Storage": null
+    "Storage":
     ? "In Hand"
     : null
     ? "Weapon Skill"
@@ -37,7 +39,7 @@
     "Endurance": "22"
     "Agility": "12"
     "Health": "50"
-    "Storage": null
+    "Storage": 
     ? "In Hand"
     : "dagger"
     ? "Weapon Skill"
@@ -49,7 +51,7 @@
     "Endurance": "22"
     "Agility": "12"
     "Health": "50"
-    "Storage": null
+    "Storage": 
     ? "In Hand"
     : "shield"
     ? "Weapon Skill"
