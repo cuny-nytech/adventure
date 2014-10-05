@@ -12,7 +12,7 @@ require 'player'
 require 'item'
 
 
-class Game
+class World
   
   attr_reader :name, :locations_list, :players_list, :no_players, :map_size, :items_list, :actions
   

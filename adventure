@@ -5,7 +5,7 @@
 # Oct. 4, 2014.
 
 $:.unshift File.dirname(__FILE__)
-require 'game'
+require 'world'
 require 'curses'
 
 include Curses
@@ -17,7 +17,7 @@ class Adventure
   attr_reader :game
   
   def initialize 
-    @game = Game.new("Nada", CONF_FILE_PATH)
+    @game = World.new("Nada", CONF_FILE_PATH)
     @player = @game.players_list[0]
   end
 
@@ -162,6 +162,7 @@ class Adventure
       when KEY_RIGHT
         highlight += 1
       when KEY_DOWN
+        deleteln
         return 
       when KEY_UP
         if label == :action
