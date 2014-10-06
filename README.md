@@ -1,5 +1,6 @@
 # Choose Your Own Adventure
 Slavisa Djukic <Slavisa.Djukic15@myhunter.cuny.edu>
+
 Oct. 4, 2014.
 
 ##Game title
