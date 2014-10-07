@@ -21,7 +21,7 @@ def nextline(id)
 end
 
 
-s = load_story('adventure.txt')
+s = load_story('adventureStory.txt')
 print "\n Welcome to Gabriela Voll's Choose Your own adventure story \n"
 cur=0; 
 
