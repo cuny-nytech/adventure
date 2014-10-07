@@ -1,3 +1,9 @@
-# Choose Your Own Adventure
+To run this program, 
 
-Create a [Choose Your Own Adventure](http://en.wikipedia.org/wiki/Choose_Your_Own_Adventure#Format) game. Submit a pull request to this repository with all the necessary files, and replace this README with a description of your game and how to run it. Make sure to give the user instructions in the game about how to play, get help, etc.
+please download adventureStory.txt, gabbyAdventure.rb
+must be in the same folder
+
+to run, type: ruby gabbyAdventure.rb  
+into terminal 
+
+Then to go thru the story type 1 or 2, till the end of the story 
