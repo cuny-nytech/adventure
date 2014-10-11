@@ -28,7 +28,8 @@ while continue ==  true
   chapter_selection(chapter)
   print('To continue, please type  {1, for continue}{0, for cancel}')
   go = gets
-  if go.to_i == 0
-    continue = false
-  end
+  go.to_i == 0 && continue = false
 end
+
+
+
