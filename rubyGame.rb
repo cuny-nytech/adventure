@@ -1,8 +1,8 @@
-def print_stories_text(chapter)
+def print_stories_text chapter
   (0...50).map { ('a'..'z').to_a[rand(chapter.to_i)] }.join
 end
 
-def get_chapters(index)
+def get_chapters index
   "Chapter #{index}"
 end
 
