@@ -1,7 +1,3 @@
-def print_stories(chapter)
-  chapter + 1
-end
-
 def print_stories_text(chapter)
   (0...50).map { ('a'..'z').to_a[rand(chapter.to_i)] }.join
 end
@@ -30,6 +26,3 @@ while continue ==  true
   go = gets
   go.to_i == 0 && continue = false
 end
-
-
-
