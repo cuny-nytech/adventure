@@ -1,59 +1,108 @@
-def userChoseSleep()
-	puts "\nBecause you have chosen to be lazy, and sleep 30mins extra instead of waking up early, we shall play a game."
-	puts "Based on your answers, it will be determined whether you wake up on time, or not."
-	puts "The name of our game is: Guess the Number!\n"
-
-	if guessTheNumberGame == true
-		puts "Since you have won Guess The Number!, you have successfully woken up at 7am!"
-	else
-		puts "Since you have lost Guess The Number!, you have woken up late, and missed your first day of class."
-	end
+def userIsDead
+	puts 
+	puts "You have just been killed."
 end
 
-def userChoseWakeUp
-	puts "Because you have chosen to wake up early, you are ready to start your first day of class!"
+def userEscaped
+	puts
+	puts "Congratulations! With no chance of survival, you have actually managed to escape, and be free!"
 end
 
 def guessTheNumberGame
-	puts 
+	puts
 	puts "Instructions:"
-	puts "Guess The Number is a fairly simple game, where the user has 3 tries to guess the number that the game has chosen. The program will randomly choose a number from 1-5, and the user has 3 tries to guess the number."
-	puts "Please note that the once the number has been chosen by the program, the number will not change."
-	puts "Are you ready to play Guess The Number?"
-	readyToPlayTheGame = gets.chomp
-	readyToPlayTheGame.downcase!
+	puts "You have 3 tries to guess the number that the program has randomized from 1-5"
+	puts "Choosing the wrong number will result in your death. But choosing the right number will result in victory."
 
-	if readyToPlayTheGame == "yes"
-		programNumber = rand(1..5)
-		srand(programNumber)
+	programNumber = rand(1..5)
+	srand(programNumber)
 
-		counter = 1
-		while counter <= 3
-			puts "Please enter a number from 1-5"
-			userGuess = gets.chomp.to_i
+	counter = 1
+	while counter <= 3
+		puts "Please enter a number from 1-5"
+		userGuess = gets.chomp.to_i
 
-			if userGuess == programNumber
-				puts "Congratulations! You have successfully guessed the right number, and won Guess The Number game!\n"
-				return true
-			else
-				puts "Wrong guess!"
-			end
-			counter += 1
+		if userGuess == programNumber
+			return true
+		else
+			puts "Wrong guess!"
 		end
-	else
-		guessTheNumberGame
+		counter += 1
 	end
 end
 
+def guessTheNumberGameSecond
+	puts
+	puts "Instructions:"
+	puts "You have 1 try to guess the number that the program has randomized from 1-10"
+	puts "Choosing the wrong number will result in your death. But choosing the right number will result in victory."
 
-puts "As you are sleeping peacefully in the comfort of your bed, you hear your alarm clock ringing. Begrudgingly, you start to force yourself up to turn off the alarm. To your surprise, the time is only 6.30am. You have a class at 9am, and you only need to wake up at 7am."
-puts "You now have two choices: Either you could wake up 30mins early. Or you could risk sleeping 30mins more."
-puts "What will you do? Sleep or wake up?"
-sleepOrWakeUpInput = gets.chomp
-sleepOrWakeUpInput.downcase!
+	programNumber = rand(1..10)
+	srand(programNumber)
 
-if sleepOrWakeUpInput == "sleep"
-	userChoseSleep
+	puts "Please enter a number from 1-10"
+	userGuess = gets.chomp.to_i
+
+	if userGuess == programNumber
+		return true
+	else
+		return false;
+	end
+end
+
+def deathDoor
+	puts "Feeling like a boss, you have chosen to go through the door labeled Death"
+	puts "Having opened the door, you realize that the doors were not labeled to trick you."
+	puts "You have now walked in the guard breakroom, where there are 10 guards taking their break."
+
+	if guessTheNumberGameSecond == true
+		userEscaped
+	else 
+		userIsDead
+	end
+end
+
+def freedomDoor
+	userEscaped
+end
+
+def userChoseToFight
+	puts
+	puts "You slowly creep behind the guard, but unfortunately the guard manages to hear you creeping behind you."
+
+	if guessTheNumberGame == true
+		puts "Good job! You have successfully managed to kill the guard."
+		continueStory
+	else
+		userIsDead
+	end
+end
+
+def continueStory
+	puts "Having killed the guard, you now walk towards the end of the long tunnel"
+	puts "At the end of the tunnel, you come across two doors labeled: Death, and Freedom"
+	puts "Which door do you choose?"
+	puts "Hint: The doors may or may not be labeled in those letters to trick you."
+	userDoorInput = gets.chomp
+	userDoorInput.downcase!
+
+	if userDoorInput == "death"
+		deathDoor
+	else
+		freedomDoor
+	end
+end
+
+puts "As you slowly begin to open your eyes, you start to realize that you have been taken as a prisoner by the ISIS."
+puts "You glance around the room for options on what you could do to escape, but you only see a guard with a gun with his back towads you."
+puts "You over-hear the guards saying that you are to be excuted in a few hours."
+puts "You now have two options: You could either accept your fate and die, or you could try escaping"
+puts "Will you fight? Or will you die?"
+userFirstInput = gets.chomp
+userFirstInput.downcase!
+
+if userFirstInput == "fight"
+	userChoseToFight
 else
-	userChoseWakeUp
+	userIsDead
 end
