@@ -1,42 +1,43 @@
-
-$introd = []
-$levels = [{ "go out" => 1, "study" => 2, "relax" => 10 },{ "start over" => 0, "proceed" => 3 }, { "work" => 4, "study" => 5, "nap" => 8 },{ "start over" => 0, "union" => 6, "nap" => 7, "turn off phone" => 9}, {"start over" => 0}]
- 
-
+# This is the final_week adventure game.
 class Adventure
+  attr_accessor :introd, :levels
+  def initialize(arr)
+    @introd = arr
+    @levels = Array.new(5) { Hash.new }
+    @levels[0] = { 'go out' => 1, 'study' => 2, 'relax' => 10 }
+    @levels[1] = { 'start over' => 0, 'proceed' => 3 }
+    @levels[2] = { 'work' => 4, 'study' => 5, 'nap' => 8 }
+    @levels[3] = { 'start over' => 0, 'union' => 6, 'nap' => 7, 'turnoff' => 9 }
+    @levels[4] = { 'start over' => 0 }
+  end
 
- 	def initialize(arr)
- 		$introd = arr 	
- 	end
+  def start
+    puts introd[0].chomp('*')
+    play_game
+  end
 
-	def start()
-		puts $introd[0].chomp('*')
-		play_game
-	end
+  def start_over
+    puts introd[0].chomp('*')
+  end
 
-	def play_game()
-		no = 0
-		while true
-			choice = gets.chomp
-			if $levels[no][choice] == 0
-				puts $introd[0].chomp('*')
-				no = 0		
-				next
-			elsif choice =="end"
-				break
-			elsif $levels[no][choice] == nil
-				puts "Choice not available. Please make sure you type in the \nchoice as shown in paranthesis. Single quotes not needed"	
-				next			
-			end
-			puts $introd[$levels[no][choice]].chomp('*')
-			no+=1;
-		end
+  def game_loop(choice, no)
+    while choice != 'end'
+      if levels[no][choice] == 0 then no = start_over.to_i
+      elsif choice == 'end' then break
+      elsif levels[no][choice].nil?; puts 'Choice N/A.Type as shown in ()'
+      else
+        puts introd[levels[no][choice]].chomp('*')
+        no += 1
+      end
+      choice = gets.chomp
+    end
+  end
 
-	end
-
+  def play_game
+    no = 0
+    choice = gets.chomp
+    game_loop(choice, no)
+  end
 end
-
-story_game = Adventure.new(File.readlines('story.txt', sep = '*'))
+story_game = Adventure.new(File.readlines('story.txt', '*'))
 story_game.start
-
-
