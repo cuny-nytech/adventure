@@ -1,0 +1,45 @@
+Places_to_search = ['closet', 'bed', 'desk','window']
+
+print "WELCOME TO MY ADVENTURE GAME!".center(80)
+print "Detective Dan Walker is the lead detective working on a case of grimsly murders.".center(80)
+print "He gets a call from the station about a homicide that fits the profile of the".center(80)
+print "other homicides in his current case. He gets to the house on pine Street and ".center(80)
+print "speaks to the officers who were first on the scene. 'Husband and wife murdered".center(80)
+print "in the smae fashion as the ohters, however, the killer did not kill the children".center(80)
+print "this time.' Dan heads upstairs to the master bedroom where the crime has taken place".center(80)
+print "He observes the the typical sadistic murder that has become the trademark of this butcher".center(80)
+print "Dan knows time is limited, so he must start to gather evidence. He narrows down the search ".center(80)
+print "space to the closet, the bed, the desk , and the window. Where should dan search?"
+
+continue = 0
+while (continue < 4)
+	input = gets.chomp
+	input.downcase!
+	while ( not Places_to_search.include?(input) )
+		print "Dan can not search there. Where should dan search?".center(80)
+		input = gets.chomp
+		input.downcase!
+	end
+	if ( input == 'closet')
+
+		print"There is nothing but clothes in here.\n"
+		continue+=1
+	
+
+	elsif (input == 'window')
+		print"The window shows signs of a forced entry. Need to collect fingerprints.\n"
+		continue+=1
+	
+
+	elsif (input == 'desk')
+		print"There seems to be an ashtray on the desk. All the cigarettes are\n"
+		print"the same except for one. I need to bring this to forensics.\n"
+		continue+=1
+	
+
+	elsif (input == 'bed')
+		print"Forensics needs check the bodies for any DNA evidence.\n"
+		continue+=1
+	
+end
+end
