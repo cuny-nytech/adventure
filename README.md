@@ -1,9 +1,12 @@
 # Choose Your Own Adventure
 
-Create a [Choose Your Own Adventure](http://en.wikipedia.org/wiki/Choose_Your_Own_Adventure#Format) game. [Here](https://writer.inklestudios.com/stories/musgraveritual) is a fancy web-based example, but creating yours as text-only, command-line based is fine. You can use ASCII art if you're feeling...wait for it...*adventurous*.
+Dr Who Adventure Game. This is a choose your own adventure game in which you run the file adventure.rb on the command line. When prompted to make a choice, type in the number of the choice you make at the console prompt. (Btw the Dalek choice is kind of bare, aside from a very menacing picture of Dalek.)
 
-![cookie monster](http://media.giphy.com/media/5wWf7GXcEM6fJRAzUo8/giphy.gif)
+In order for for the ascii art to work, you can type in 
+brew install imagemagick
+brew install xz
+gem install asciiart
 
-See the [asciiart](https://github.com/nodanaonlyzuul/asciiart) and [artii](https://github.com/miketierney/artii) gems.
+before running my program.
 
-Submit a pull request to this repository with all the necessary files, and replace this README with a description of your game and how to run it. Make sure to give the user instructions in the game about how to play, get help, etc.
+![image of spinning Tardis](http://media.giphy.com/media/omFu1lG5eOhcA/giphy.gif)
