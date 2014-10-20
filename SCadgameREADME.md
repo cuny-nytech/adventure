@@ -1,0 +1,3 @@
+This is an incomplete file. It is missing the main game. It has a simple setup by asking the user if they want to play using 'y' or 'n'. It also askes the user for their name. This code will be optimized as time goes. This is just sample code and a preview of whats to come. Later down the line, classes will be used and different rb files. This ensures more readability. Rules and description will be added.
+
+![Alt Text](http://sd.keepcalm-o-matic.co.uk/i/keep-calm-and-stay-tuned-25.png)
